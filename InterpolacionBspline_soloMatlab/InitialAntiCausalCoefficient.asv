@@ -1,0 +1,8 @@
+function c = InitialAntiCausalCoefficient_vector(samples,z)
+
+% This initialization corresponds to mirror boundaries
+DataLength = length(samples);
+
+c = (z/(z*z -1)) * (z * samples(DataLength-1)+ samples(DataLength));
+
+end

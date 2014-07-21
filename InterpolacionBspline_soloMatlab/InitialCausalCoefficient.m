@@ -1,0 +1,34 @@
+function c = InitialCausalCoefficient(samples,z,tol)
+
+% This initilization corresponds to mirror boundaries
+DataLength = length(samples);
+TruncatedSum = 0;
+if(tol > 0)
+    Horizon = ceil(log(tol)/log(abs(z)));
+    TruncatedSum = Horizon < DataLength;
+end
+
+if(TruncatedSum)
+    % Accelerated loop
+    zn = z;
+    Sum = samples(1);
+    for n=1:Horizon
+        Sum = Sum + zn * samples(n);
+        zn = zn * z;
+    end
+    c = Sum;
+else
+    % Full loop
+    zn = z;
+    iz = 1.0/z;
+    z2n = z^(DataLength-1);
+    Sum = samples(1) + z2n * samples(DataLength);
+    z2n = z2n * z2n * iz;
+    for n=1:(DataLength-1)
+        Sum = Sum + (zn + z2n) * samples(n);
+        zn = zn * z;
+        z2n = z2n * iz;
+    end
+    c = ( Sum / (1-zn*zn));
+end
+end

@@ -22,6 +22,7 @@ switch(Deg)
         v(3) = w + v(1) - 2.0 * v(2);
         v(2) = 1.0 - v(1) - v(3) - v(4);
         
+        
     case 4
         w = x - index(3);
         w2 = w * w;

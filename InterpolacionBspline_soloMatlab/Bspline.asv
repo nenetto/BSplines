@@ -1,8 +1,0 @@
-function y = Bspline(n,x)
-
-x(abs(x))
-
-x = x + (n+1)/2;
-y = deltaPse(n+1,n,x);
-y(y<10e-6) = 0;
-end

@@ -17,6 +17,8 @@ CORTE2 = CORTE*4;
 SplineDeg = 3; 
 tStart=tic;
 coeffs = ConvertToInterpolationCoefficients(image,SplineDeg);
+[A,B,C] = size(coeffs);
+[X,Y,Z] = meshgrid(linspace(1,B,N*B),linspace(1,A,N*A),linspace(1,C,N*C));
 timescoeffs(1)=toc(tStart);
 V_new = X*0;
 tStart=tic;
@@ -34,6 +36,8 @@ coeffs = ConvertToInterpolationCoefficients(image,SplineDeg);
 timescoeffs(2)=toc(tStart);
 V_new = X*0;
 tStart=tic;
+[A,B,C] = size(coeffs);
+[X,Y,Z] = meshgrid(linspace(1,B,N*B),linspace(1,A,N*A),linspace(1,C,N*C));
 V_new(:) =  InterpolValue(coeffs,[Y(:),X(:),Z(:)],SplineDeg);
 timesinterp(2)=toc(tStart);
 figure

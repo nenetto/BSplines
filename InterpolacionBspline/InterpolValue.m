@@ -21,7 +21,7 @@ valueInterp = zeros(L,1);
 
 
 for i=1:L
-valueInterp(i) = InterpolValue_c(coefficients,valuePosition(i,:),SplineDegree);
+valueInterp(i) = InterpolValue_c(coefficients,valuePosition(i,:)-0.5,SplineDegree);
 end
 
 end

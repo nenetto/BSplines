@@ -9,10 +9,6 @@ if(isvector(coefficients))
     coefficients = coefficients';
 end
 
-if(isvector(valuePosition))
-    valuePosition = valuePosition';
-end
-
 
 % Check Grado Spline/oMom
 if(SplineDegree>9)
@@ -22,8 +18,16 @@ elseif(and(SplineDegree<0,SplineDegree~=-3))
 end
 
 % Check if column
-
 [L,~] = size(valuePosition);
+
+if L == 1
+    s = size(valuePosition);
+    if s(1) > 1
+        
+    end
+end
+    
+
 valueInterp = zeros(L,1);
 
 
